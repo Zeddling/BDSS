@@ -1,0 +1,13 @@
+server:
+  port: 8100
+
+keycloak:
+  auth-server-url: http://localhost:8180/auth
+  realm: bdss-project
+  resource: bdss-login
+  public-client: true
+
+logging:
+  level:
+    org:
+      keycloak: TRACE
