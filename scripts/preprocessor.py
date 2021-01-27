@@ -30,7 +30,7 @@ class preprocessor:
 
     def mask_and_segment(self, img, original_image):
         cnt = sorted(cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[-2], key=cv2.contourArea)[-1]
-        mask = np.zeros((600, 600), np.uint8)
+        mask = np.zeros((227, 227), np.uint8)
         cv2.drawContours(mask, [cnt], -1, 255, -1)
         dst = cv2.bitwise_and(original_image, original_image, mask=mask)
         segmented_img = cv2.cvtColor(dst, cv2.COLOR_BGR2GRAY)
@@ -45,7 +45,7 @@ class preprocessor:
     def process_images(self):
         for i, file in enumerate(glob.glob(self.input_dir+"/*.png")):
             img_file = cv2.imread(file)
-            img = cv2.resize( img_file, (600,600), interpolation=cv2.INTER_AREA)
+            img = cv2.resize( img_file, (227,227), interpolation=cv2.INTER_AREA)
             gray = self.gray_scale(img)
             thresh = self.threshold(gray)
             segmented = self.mask_and_segment(thresh, img)
