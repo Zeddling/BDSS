@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#" th:action="@{/predict}" enctype="multipart/form-data" method="post" th:object="${fileUpload}">
+        <input type="file" th:field="*{file}" /><br>
+        <button type="submit">Predict</button>
+    </form>
+    <p th:field="*{state}"></p>
+</body>
+</html>

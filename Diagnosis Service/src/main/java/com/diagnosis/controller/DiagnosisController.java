@@ -1,6 +1,5 @@
 package com.diagnosis.controller;
 
-import com.diagnosis.dao.AnalyticsProxy;
 import com.diagnosis.dao.UserRepository;
 import com.diagnosis.model.User;
 import com.diagnosis.model.UserDiagnosisRequest;
@@ -24,16 +23,10 @@ public class DiagnosisController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private AnalyticsProxy analyticsProxy;
-
     @PostMapping("create")
     public UserFullDiagnosis saveDiagnosis( @RequestBody User user ) {
         //  Send mammogram to analytics engine
-        UserDiagnosisResponse userDiagnosisResponse = analyticsProxy.getDiagnosis(
-                new UserDiagnosisRequest( user.getPatientNumber(), user.getImage() )
-        );
-
+        UserDiagnosisResponse userDiagnosisResponse = new UserDiagnosisResponse();
         //  Convert mammogram to bytes then save
         try {
             //`Save data to database
