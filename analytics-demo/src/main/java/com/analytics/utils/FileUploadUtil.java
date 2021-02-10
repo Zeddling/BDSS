@@ -1,4 +1,4 @@
-package com.analytics;
+package com.analytics.utils;
 
 import java.io.*;
 import java.nio.file.*;

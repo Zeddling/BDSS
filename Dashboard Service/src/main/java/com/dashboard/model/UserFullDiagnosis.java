@@ -13,24 +13,25 @@ public class UserFullDiagnosis implements Serializable {
 
     private String patientNumber;
     private String patientName;
-    private LocalDateTime diagnosisDate;
-    private byte[] image;    //  Mammogram image
+    private String diagnosisDate;
+    private String filename;
+    private String breast_side;
+    private String image_view;
+    private String pathology;
     private String comments;
-    private byte[] diagnosedImage;
-    private String status;
 
     public UserFullDiagnosis() {
     }
 
-    public UserFullDiagnosis(String patientNumber, String patientName, LocalDateTime diagnosisDate,
-                             byte[] image, String comments, byte[] diagnosedImage, String status) {
+    public UserFullDiagnosis(String patientNumber, String patientName, String diagnosisDate, String filename, String breast_side, String image_view, String pathology, String comments) {
         this.patientNumber = patientNumber;
         this.patientName = patientName;
         this.diagnosisDate = diagnosisDate;
-        this.image = image;
+        this.filename = filename;
+	    this.breast_side = breast_side;
+        this.image_view = image_view;
+        this.pathology = pathology;
         this.comments = comments;
-        this.diagnosedImage = diagnosedImage;
-        this.status = status;
     }
 
     public String getPatientNumber() {
@@ -49,20 +50,44 @@ public class UserFullDiagnosis implements Serializable {
         this.patientName = patientName;
     }
 
-    public LocalDateTime getDiagnosisDate() {
+    public String getDiagnosisDate() {
         return diagnosisDate;
     }
 
-    public void setDiagnosisDate(LocalDateTime diagnosisDate) {
+    public void setDiagnosisDate(String diagnosisDate) {
         this.diagnosisDate = diagnosisDate;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getBreast_side() {
+        return breast_side;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setBreast_side(String breast_side) {
+        this.breast_side = breast_side;
+    }
+
+    public String getImage_view() {
+        return image_view;
+    }
+
+    public void setImage_view(String image_view) {
+        this.image_view = image_view;
+    }
+
+    public String getPathology() {
+        return pathology;
+    }
+
+    public void setPathology(String pathology) {
+        this.pathology = pathology;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getComments() {
@@ -72,20 +97,5 @@ public class UserFullDiagnosis implements Serializable {
     public void setComments(String comments) {
         this.comments = comments;
     }
-
-    public byte[] getDiagnosedImage() {
-        return diagnosedImage;
-    }
-
-    public void setDiagnosedImage(byte[] diagnosedImage) {
-        this.diagnosedImage = diagnosedImage;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
+

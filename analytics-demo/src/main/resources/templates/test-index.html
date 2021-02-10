@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.fd.css}">
+</head>
+<body>
+<section>
+    <form action="" th:action="@{/api/predict-test}" method="POST" th:object="${predictionRequest}" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Upload File</label>
+                        <div class="preview-zone hidden">
+                            <div class="box box-solid">
+                                <div class="box-header with-border">
+                                    <div><b>Preview</b></div>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                            <i class="fa fa-times"></i> Reset The Field
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body"></div>
+                            </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                            <div class="dropzone-desc">
+                                <i class="glyphicon glyphicon-download-alt"></i>
+                                <p>Choose an image file or drag it here.</p>
+                            </div>
+                            <input type="file" name="img_logo" th:field="*{file}" class="dropzone">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section>
+    <div class="container my-2">
+        <div th:switch="*{pred}">
+            <h2 th:case="null">Diagnosis will appear here</h2>
+            <div th:case="*">
+                <table class="table ">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Pathology</th>
+                        <th scope="col">Benign</th>
+                        <th scope="col">Malignant</th>
+                        <th scope="col">Normal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pp: ${pred}">
+                            <td th:text="${pp.class_name}"></td>
+                            <td th:text="${pp.benign}"></td>
+                            <td th:text="${pp.malignant}"></td>
+                            <td th:text="${pp.normal}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script  th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

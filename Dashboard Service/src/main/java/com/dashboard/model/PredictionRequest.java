@@ -1,15 +1,15 @@
-package com.analytics;
+package com.dashboard.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileUpload {
+public class PredictionRequest {
 
     private MultipartFile file;
 
-    public FileUpload() {
+    public PredictionRequest() {
     }
 
-    public FileUpload(MultipartFile file) {
+    public PredictionRequest(MultipartFile file) {
         this.file = file;
     }
 

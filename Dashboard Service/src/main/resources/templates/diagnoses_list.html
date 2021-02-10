@@ -42,9 +42,6 @@
                 <li class="active">
                     <a href="">View Diagnosis</a>
                 </li>
-                <li>
-                    <a href="/api/dashboard/support">Support</a>
-                </li>
                 <li class="settings">
                     <div class="row">
                         <div class="col-3">
@@ -65,20 +62,45 @@
                     <p class="display-4" style="position: relative; top: 20px;">View Diagnosis</p>
                 </div>
                 <div class="col-md-5  mlr-auto" style="position: relative; top: 35px;">
-                    <form action="">
+                    <form th:action="@{api/dashboard/view-diagnosis/{patient-number}}">
                         <div class="form-row">
                             <div class="col-6">
                                 <input type="search" class="form-control" name="search" id="search" placeholder="Search">
                             </div>
                             <div class="col">
-                                <input type="submit" class=" btn btn-primary" name="search" id="search" placeholder="">
+                                <input type="submit" class=" btn btn-primary" name="submit" id="submit" placeholder="">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <hr id="v_hr">
-
+            <div th:switch="*{patients}">
+                <h2 th:case="null">No diagnosis available</h2>
+                <div th:case="*">
+                    <table class="table" style="position: relative; top: 20px;">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Patient Number</th>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Diagnosis Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="patient: ${patients}">
+                            <td th:text="*{patient.id}"></td>
+                            <td th:text="*{patient.patientNumber}"></td>
+                            <td th:text="*{patient.patientName}"></td>
+                            <td th:text="*{patient.diagnosisDate}"></td>
+                            <td>
+                                <a class="btn btn-primary" th:href="@{/api/dashboard/view-diagnosis/{patientNumber}(patientNumber=${patient.patientNumber})}">View</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>

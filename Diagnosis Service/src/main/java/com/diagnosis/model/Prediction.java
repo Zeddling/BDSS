@@ -1,13 +1,13 @@
-package com.analytics;
+package com.diagnosis.model;
 
-public class PreprocessedMat {
+public class Prediction {
     private String class_name;
     private String confidence_level;
 
-    public PreprocessedMat() {
+    public Prediction() {
     }
 
-    public PreprocessedMat(String class_name, String confidence_level) {
+    public Prediction(String class_name, String confidence_level) {
         this.class_name = class_name;
         this.confidence_level = confidence_level;
     }

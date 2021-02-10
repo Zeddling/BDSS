@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Create Diagnosis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-5">
+    <h3>Create Diagnosis</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/api/predict}" th:object="${formData}" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group ">
+                            <label for="name" class="col-form-label">Patient Name</label>
+                            <input type="text" th:field="*{patientName}" class="form-control" id="name" placeholder="Patient Name" required>
+                        </div>
+                        <div class="form-group ">
+                            <label for="patientNumber" class="col-form-label">Patient Number</label>
+                            <input type="text" th:field="*{patientNumber}" class="form-control" id="patientNumber" placeholder="Patient Number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="view" class="col-form-label">Image View</label>
+                            <input type="text" th:field="*{image_view}" class="form-control" id="view" placeholder="Image View" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="side" class="col-form-label">Side</label>
+                            <input type="text" th:field="*{breast_side}" class="form-control" id="side" placeholder="Breast Side" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dd" class="col-form-label">Diagnosis Date</label>
+                            <input type="date" th:field="*{diagnosisDate}" class="form-control" id="dd" placeholder="Diagnosis Date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="file" class="col-form-label">Upload File</label>
+                            <input type="file" th:field="*{mammogram}" class="form-control" id="file" placeholder="Upload file">
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <input type="submit" class="btn btn-primary" value="Create Diagnosis">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

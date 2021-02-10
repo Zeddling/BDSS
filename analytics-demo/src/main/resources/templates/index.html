@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <form action="#" th:action="@{/predict}" enctype="multipart/form-data" method="post" th:object="${fileUpload}">
-        <input type="file" th:field="*{file}" /><br>
-        <button type="submit">Predict</button>
-    </form>
-    <p th:field="*{state}"></p>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${patients}" class="container my-5">
+                    <p class="my-5">
+                        <a href="/api/create" class="btn btn-primary">
+                            <i class="fas fa-user-plus ml-2">Add Diagnosis</i>
+                        </a>
+                    </p>
+                    <div class="col-md-10">
+                        <h2 th:case="null">No diagnosis available</h2>
+                        <div th:case="*">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Number</th>
+                                        <th scope="col">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="patient: ${patients}">
+                                        <td th:text="${patient.id}"></td>
+                                        <td th:text="${patient.patientNumber}"></td>
+                                        <td th:text="${patient.patientName}"></td>
+                                        <td th:text="${patient.diagnosisDate}"></td>
+                                        <td>
+                                            <form method="POST" th:action="@{/view-diagnosis}">
+                                                <input type="hidden" name="patientName" id="patientName" th:value="${patient.patientName}" />
+                                                <input type="hidden" name="diagnosisDate" id="diagnosisDate" th:value="${patient.diagnosisDate}" />
+                                                <button type="submit" name="submit" class="btn btn-primary"></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

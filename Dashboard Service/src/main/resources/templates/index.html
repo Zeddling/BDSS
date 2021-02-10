@@ -24,7 +24,7 @@
             <div class="sidebar-header">
                 <div class="row">
                     <div class="col-md">
-                        <i class="fa fa-user-circle-o fa-3x" aria-hidden="true" style="color: white;"></i>
+                        <i class="fa fa-user-circle-o fa-3x" aria-hidden="true" style="color: white; "></i>
                     </div>
                     <div class="col-md">
                         <p style="color: white;">
@@ -36,14 +36,11 @@
 
             <ul class="navbar-nav">
                 <p>Breast Cancer Detection Decision Support System</p>
-                <li >
-                    <a href="/api/dashboard/new-diagnosis">New Diagnosis</a>
-                </li>
-                <li >
-                    <a href="/api/dashboard/view-diagnosis">View Diagnosis</a>
-                </li>
                 <li class="active">
-                    <a href="">Support</a>
+                    <a href="">New Diagnosis</a>
+                </li>
+                <li>
+                    <a href="/api/dashboard/view-diagnosis">View Diagnosis</a>
                 </li>
                 <li class="settings">
                     <div class="row">
@@ -58,12 +55,40 @@
             </ul>
         </nav>
 
-
         <!-- Page Content -->
         <div id="content">
+            <div class="row">
+                <p class="display-4">Create New Diagnosis</p>
+            </div>
+            <form th:action="@{/api/dashboard/create-diagnosis}" th:object="${partialDiagnosis}" method="post" style="position: relative; top: 40px;">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="pName">Patient's Name </label>
+                            <input type="text" class="form-control" id="pName" th:field="*{patientName}" placeholder="Enter Name" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="pNum">Patient's Number</label>
+                        <input type="text" name="" id="pNum" class="form-control" th:field="*{patientNumber}" placeholder="Enter Patient's Number">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="dDate">Diagnosis Date</label><br>
+                        <input type="date" name="dDate" th:field="*{diagnosisDate}" id="dDate">
+                    </div>
+                </div>
 
+                <div class="row" style="position: relative; top: 15px; left: 1em;">
+                    <textarea name="comments" id="comments" cols="55" rows="6" placeholder="Enter comments"></textarea>
+                </div>
+                <div class="row justify-content-center" style="position: relative; top: 30px;">
+                <input type="submit" class="btn btn-success" placeholder="Next">
+                </div>
+            </form>
         </div>
 
     </div>
-</body>
+    </body>
 </html>

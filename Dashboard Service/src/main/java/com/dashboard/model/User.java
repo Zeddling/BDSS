@@ -15,14 +15,21 @@ public class User implements Serializable {
     private String patientName;
     private LocalDateTime diagnosisDate;
     private MultipartFile image;    //  Mammogram image
+    private String breast_side;
+    private String image_view;
     private String comments;
 
-    public User(String patientNumber, String patientName, LocalDateTime diagnosisDate,
-                MultipartFile image, String comments) {
+    public User() {
+    }
+
+    public User(String patientNumber, String patientName, LocalDateTime diagnosisDate, MultipartFile image,
+                String breast_side, String image_view, String comments) {
         this.patientNumber = patientNumber;
         this.patientName = patientName;
         this.diagnosisDate = diagnosisDate;
         this.image = image;
+        this.breast_side = breast_side;
+        this.image_view = image_view;
         this.comments = comments;
     }
 
@@ -56,6 +63,22 @@ public class User implements Serializable {
 
     public void setImage(MultipartFile image) {
         this.image = image;
+    }
+
+    public String getBreast_side() {
+        return breast_side;
+    }
+
+    public void setBreast_side(String breast_side) {
+        this.breast_side = breast_side;
+    }
+
+    public String getImage_view() {
+        return image_view;
+    }
+
+    public void setImage_view(String image_view) {
+        this.image_view = image_view;
     }
 
     public String getComments() {
