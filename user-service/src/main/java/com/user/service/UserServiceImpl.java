@@ -37,9 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Mono<ResponseEntity<User>> findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .flatMap(user -> userRepository.findByUsername(username)
-                    .then(Mono.just(new ResponseEntity<User>(user, HttpStatus.OK)))
-                )
+                .map(user -> new ResponseEntity<User>(user, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<User>(HttpStatus.NOT_FOUND));
     }
 
